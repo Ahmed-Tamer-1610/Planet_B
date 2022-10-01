@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Planet B</title>
+	<link href="upload.css" rel="stylesheet">
+</head>
+<body>
+	<form action='' class='form'>
+  <p class='field required'>
+    <label class='label required' for='courseTitle2'>Course Title</label>
+    <input class='text-input' id='courseTitle2' name='courseTitle2' required type='text' value=''>
+  </p>
+  <p class='field required half'>
+    <label class='label' for='courseProducer'>Course producer</label>
+    <input class='text-input' id='courseProducer' name='courseProducer' required type='Text'>
+  </p>
+  <p class='field half'>
+    <label class='label' for='courseCategory'>Course Category</label>
+    <input class='text-input' id='courseCategory' name='courseCategory' type='Text'>
+  </p>
+  <div class='field'>
+    <label class='label'>Course Type</label>
+    <ul class='checkboxes'>
+      <li class='checkbox'>
+        <input class='checkbox-input' id='choice-0' name='choice' type='checkbox' value='0'>
+        <label class='checkbox-label' for='choice-0'>Online</label>
+      </li>
+      <li class='checkbox'>
+        <input class='checkbox-input' id='choice-1' name='choice' type='checkbox' value='1'>
+        <label class='checkbox-label' for='choice-1'>Inperson</label>
+      </li>
+    </ul>
+  </div>
+  <div class='field'>
+    <label class='label'>Course level</label>
+    <ul class='options'>
+      <li class='option'>
+        <input class='option-input' id='option-0' name='option' type='radio' value='0'>
+        <label class='option-label' for='option-0'>Beginner</label>
+      </li>
+      <li class='option'>
+        <input class='option-input' id='option-1' name='option' type='radio' value='1'>
+        <label class='option-label' for='option-1'>Intermediate</label>
+      </li>
+      <li class='option'>
+        <input class='option-input' id='option-2' name='option' type='radio' value='2'>
+        <label class='option-label' for='option-2'>Advanced</label>
+      </li>
+    </ul>
+  </div>
+ <p class='field'>
+    <label class='label' for='about'>Detail</label>
+    <textarea class='textarea' cols='50' id='about' name='about' rows='4'></textarea>
+  </p>
+  <p class='field half'>
+    <label class='label' for='select'>Course language</label>
+    <select class='text' id='text'>
+      <option selected value=''></option>
+      <option value='ceo'>English</option>
+      <option value='front-end'>Arabic</option>
+      <option value='back-end'>Spanish</option>
+    </select>
+  </p>
+  <p class='field half'>
+        <button type="button" class="button" name="submitt" id="submitt">send</button>
+  </p>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <label class="fuck">Select Image File:</label>
+    <input class="fuck" type="file" name="image">
+    <input class="button" type="submit"  value="Upload">
+</form>
+</form>
+
+
+</body>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+  import { getFirestore , doc, setDoc , addDoc , collection } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAnkZOYwynxWfySlF83byrXOsQ1N-JWVGk",
+    authDomain: "planetb-c524b.firebaseapp.com",
+    databaseURL: "https://planetb-c524b-default-rtdb.firebaseio.com",
+    projectId: "planetb-c524b",
+    storageBucket: "planetb-c524b.appspot.com",
+    messagingSenderId: "597706925080",
+    appId: "1:597706925080:web:de77498890ad7eca000f6d",
+    measurementId: "G-LEWNMV43CF"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getFirestore(app);
+
+  submitt.addEventListener('click',(e)=>{
+
+  var courseTitle = document.getElementById('courseTitle2').value;
+  var courseProducer = document.getElementById('courseProducer').value;
+  var courseCategory = document.getElementById('courseCategory').value;
+  var courseDetail = document.getElementById('courseDetail').value;
+
+  alert(courseTitle);
+  alert(courseProducer);
+  alert(courseCategory);
+  alert(courseCategory);
+
+  addDoc(collection(db, "Courses"), {
+  courseBrief: courseDetail,
+  courseName: courseTitle,
+  courseCategory: courseCategory,
+  courseOrganizer: courseProducer
+});
+
+alert('user added');
+
+
+  });
+
+
+</script>
+
+</html>
+
+
